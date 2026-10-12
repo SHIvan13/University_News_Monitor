@@ -127,7 +127,7 @@ def update_db(conn, cur, page, meta, last_link):
                 uni_id = get_university_id(cur, 'МИРЭА')
                 if href and title:
                     insert_news(cur, conn, title, href, dt_naive, cat_id, uni_id, descript)
-                    log_message("Новость успешно добавлена")
+                    log_message(f"Новость успешно добавлена: {href}")
                 else:
                     log_message('Структура сайта изменилась. Ссылка или заголовок .article-header не найдены', logging.ERROR)
             else:
