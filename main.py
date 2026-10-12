@@ -7,8 +7,12 @@ from parsers import parser_mirea, parser_rea, parser_kfu
 import db_func
 
 # Читаем настройки из config.json
-with open("config.json", "r", encoding="utf-8") as file:
-    config = json.load(file)
+try:
+    with open("config.json", "r", encoding="utf-8") as file:
+        config = json.load(file)
+except FileNotFoundError:
+    print("Файл конфигурации не найден")
+
 
 NEWS_DB = config["news_db"]
 USERS_DB = config["users_db"]
@@ -80,6 +84,8 @@ def make_send_list(old_max_id):
 
     print(f"Список рассылки сохранён в {OUTPUT_FILE}")
     print(f"Новых новостей: {len(news)}")
+    logging.info(f"Список рассылки сохранён в {OUTPUT_FILE}")
+    logging.info(f"Новых новостей: {len(news)}")
 
 
 def main():
